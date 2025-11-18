@@ -27,6 +27,10 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
 
   def enterStartingState(): Unit = ??? //sudda, meddela "tryck space för start"
 
+
+
+  
+
   def enterPlayingState(): Unit = ??? //sudda, för varje entitet: nollställ & rita
 
   def enterGameOverState(): Unit = ??? // meddela "game over"
