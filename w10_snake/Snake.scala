@@ -22,29 +22,86 @@ class Snake (
   private var _nbrOfApples = 0
   def nbrOfApples: Int = _nbrOfApples
 
-  def reset(): Unit = ???  // återställ starttillstånd, ge rätt svanslängd
+  def reset(): Unit =   // återställ starttillstånd, ge rätt svanslängd
+    dir = initDir
+    _nbrOfSteps = 0
+    _nbrOfApples = 0
+    _isEatenByMonster = false
+  
 
-  def grow(): Unit = ??? // väx i rätt riktning med extra svansposition
+    val startHead = initPos +dir
+    val startBody = 
 
-  def shrink(): Unit = ??? // krymp svansen om kroppslängden är större än 2
+  def grow(): Unit = 
+    if body.isEmpty then  // väx i rätt riktning med extra svansposition
+      body += initPos
+    else if body.length == 1 then 
+      body += body.last
+    else 
+      val tail = body.last
+      val preTail = body(body.length - 2)
+      val dim = tail.dim
+      
+      val stepX = (tail.x -preTail.x + dim.x) % dim.x match
+        case 1 => 1
+        case n if n == dim.x-1 = -1
+        case_ => 0
+      
+      val stepY = (tail.y - preTail.y + dim.y) % dim.y match
+        case 1 => 1
+        case n if n == dim.y-1 => -1
+        case_ => 0
 
-  def isOccupyingBlockAt(p: Pos): Boolean = ??? // kolla om p finns i kroppen
+      val newTail = Pos(tail.x + stepX, tail.y +stepY, dim)
+      body += newTail
+      
+      
 
-  def isHeadCollision(other: Snake): Boolean = ??? // kolla om huvudena krockar
+  def shrink(): Unit =  // krymp svansen om kroppslängden är större än 2
+    if body.length > 2 then 
+      body.remove(body.length-1)
+  def isOccupyingBlockAt(p: Pos): Boolean =  // kolla om p finns i kroppen
+    body.contains(p)
 
-  def isTailCollision(other: Snake): Boolean = ??? // mitt huvud i annans svans
+  def isHeadCollision(other: Snake): Boolean =  // kolla om huvudena krockar
+    val myHead = body.head
+    val otherHead = other.body.head
+    myHead == otherHead
+
+  def isTailCollision(other: Snake): Boolean =  // mitt huvud i annans svans
+    val myTail = body.tail
+    val otherTail = other.body.tail
+    myTail ==otherTail
 
   private var _isEatenByMonster: Boolean = false
   def isEatenByMonster: Boolean = _isEatenByMonster
-  def eatenByMonster(): Unit = ???
 
-  def move(): Unit = ??? 
+  def eatenByMonster(): Unit = 
+    _isEatenByMonster = true
+  
+    
+
+  def move(): Unit =  
     // väx och krymp enl. regler
     // åtgärder om äter frukt eller blir uppäten av monster
+    if _isEatenByMonster then return
+    _nbrOfSteps +=1
+    val newHead = body.head + dir
+    body.prepend(newHead)
+
+    val shouldGrow = 
+      _nbrOfSteps >= startGrowingAfter &&
+      ((_nbrOfSteps - startGrowingAfter) % growEvery == 0)
+    
+    if shouldGrow then grow()
+    else shrink()
 
   override def toString = // bra vid println-debugging
     body.map(p => (p.x, p.y)).mkString(">:)", "~", s" going $dir")
 
-  def draw(): Unit = ???
+  def draw(): Unit = 
+    ctx.pixelWindow.drawBlock(body.head.x, body.head.y, headColor)
+    body.tail.foreach(p => ctx.pixelWindow.drawBlock(p.x, p.y, tailColor)
 
-  def erase(): Unit = ???
+  def erase(): Unit = 
+    body.foreach(p => ctx.pixelWindow.clearBlock(p.x, p.y))
