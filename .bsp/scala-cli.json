@@ -1,0 +1,20 @@
+{
+  "name": "scala-cli",
+  "argv": [
+    "/Users/king/Library/Application Support/Coursier/bin/.scala-cli.aux",
+    "bsp",
+    "--json-options",
+    "/Users/king/Desktop/pgk/snake/snake/w10_snake/.scala-build/ide-options-v2.json",
+    "--json-launcher-options",
+    "/Users/king/Desktop/pgk/snake/snake/w10_snake/.scala-build/ide-launcher-options.json",
+    "--envs-file",
+    "/Users/king/Desktop/pgk/snake/snake/w10_snake/.scala-build/ide-envs.json",
+    "/Users/king/Desktop/pgk/snake/snake/w10_snake"
+  ],
+  "version": "1.9.0",
+  "bspVersion": "2.1.1",
+  "languages": [
+    "scala",
+    "java"
+  ]
+}
