@@ -1,3 +1,22 @@
+error id: file:///C:/Users/gabri/Documents/GitHub/snake/w10_snake/SnakeGame.scala:`<none>`.
+file:///C:/Users/gabri/Documents/GitHub/snake/w10_snake/SnakeGame.scala
+empty definition using pc, found symbol in pc: `<none>`.
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+	 -SnakeGame.Pos.
+	 -SnakeGame.Pos#
+	 -SnakeGame.Pos().
+	 -Pos.
+	 -Pos#
+	 -Pos().
+	 -scala/Predef.Pos.
+	 -scala/Predef.Pos#
+	 -scala/Predef.Pos().
+offset: 2151
+uri: file:///C:/Users/gabri/Documents/GitHub/snake/w10_snake/SnakeGame.scala
+text:
+```scala
 package snake
 
 object SnakeGame:
@@ -60,7 +79,7 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     while !free do //sålänge platsen INTE är ledig slumpa ny
       val x = util.Random.nextInt(dim.width) //next.Int ger ett heltal från 1 till n-1 (n-1 = dim.width -1)
       val y = util.Random.nextInt(dim.height)
-      p = Pos(x, y)
+      p = Pos@@(x, y)
     //Slumpar fram random x och y kordinater inom förstrets dimensioners gränser
       
       free = entities.forall(e => !e.isOccupyingBlockAt)
@@ -119,3 +138,10 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
   /** Implement this with a call to start with specific players and entities. */
   def play(playerNames: String*): Unit
 
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: `<none>`.
