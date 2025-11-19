@@ -24,21 +24,45 @@ class Snake (
 
   def reset(): Unit = ???  // återställ starttillstånd, ge rätt svanslängd
 
-  def grow(): Unit = ??? // väx i rätt riktning med extra svansposition
+  def grow(): Unit = // väx i rätt riktning med extra svansposition
+    val tail = body.last //last innebär sista elementet (pos) på ormen dvs svansen
+    body.append(tail) //append: lägg till ett element i slutet av ormen
 
-  def shrink(): Unit = ??? // krymp svansen om kroppslängden är större än 2
+  def shrink(): Unit = // krymp svansen om kroppslängden är större än 2
+    if body.length > 2 then
+      body.remove(body.length - 1)
 
-  def isOccupyingBlockAt(p: Pos): Boolean = ??? // kolla om p finns i kroppen
+  def isOccupyingBlockAt(p: Pos): Boolean =  // kolla om p finns i kroppen
+    body.contains(p)
 
-  def isHeadCollision(other: Snake): Boolean = ??? // kolla om huvudena krockar
+  def isHeadCollision(other: Snake): Boolean = // kolla om huvudena krockar
+    this.body.head == other.body.head
 
-  def isTailCollision(other: Snake): Boolean = ??? // mitt huvud i annans svans
+  def isTailCollision(other: Snake): Boolean = // mitt huvud i annans svans
+    val myHead = this.body.head
+    other.body.tail.contains(myHead)
 
   private var _isEatenByMonster: Boolean = false
   def isEatenByMonster: Boolean = _isEatenByMonster
-  def eatenByMonster(): Unit = ???
+  def eatenByMonster(): Unit = 
+    _isEatenByMonster = true
 
-  def move(): Unit = ??? 
+  def move(): Unit = 
+    if !_isEatenByMonster then
+      val newHead = body.head + dir //Pos + direction
+      body.prepend(newHead)
+      _nbrOfSteps += 1
+
+      val shouldGrow =
+        _nbrOfSteps > startGrowingAfter && //Ormen ska ju inte växa i början utan efter 400 steg
+        (_nbrOfSteps - startGrowingAfter) % growEvery == 0 //Jämnt delbart med settings growEvery, subtraktion pga annars växer den på steg 10 ist för 410!
+
+      if !shouldGrow then
+        shrink()
+      else 
+        () //ingenting händer
+
+      //TODO behövs växande och krympande detta är endast så att den rör sig
     // väx och krymp enl. regler
     // åtgärder om äter frukt eller blir uppäten av monster
 

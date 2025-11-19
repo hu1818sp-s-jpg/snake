@@ -34,7 +34,11 @@ class Settings(configs: Map[String, String]):
     val color: Color = getOrElse("monster.color", Colors.Pink)
 
 object Settings:
-  def configsFromFile(): Map[String, String] = Map() // TODO: read from file
+  def configsFromFile(): Map[String, String] = 
+    if configs then 
+      scala.io.Source.fromFile(/*filename*/) 
+    
+    // TODO: read from file
   given default: Settings = Settings(configsFromFile())
 
   trait Parser[T]:

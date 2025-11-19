@@ -60,10 +60,9 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     while !free do //sålänge platsen INTE är ledig slumpa ny
       val x = util.Random.nextInt(dim.width) //next.Int ger ett heltal från 1 till n-1 (n-1 = dim.width -1)
       val y = util.Random.nextInt(dim.height)
-      p = Pos(x, y)
-    //Slumpar fram random x och y kordinater inom förstrets dimensioners gränser
+      p = Pos(x, y) //Slumpar fram random x och y kordinater inom förstrets dimensioners gränser
       
-      free = entities.forall(e => !e.isOccupyingBlockAt)
+      free = entities.forall(e => !e.isOccupyingBlockAt (p))
 
     p
 
