@@ -25,19 +25,52 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
   private var _iterationsSinceStart = 0
   def iterationsSinceStart = _iterationsSinceStart
 
-  def enterStartingState(): Unit = ??? //sudda, meddela "tryck space för start"
+  def enterStartingState(): Unit = //sudda, meddela "tryck space för start"
+    clear()
+    clearMessageArea()
+    drawTextInMessageArea("Tryck SPACE för att starta spelet", 10, 2) //Osäker över hur stor texten ska vara, återkom hit!!
+    state = Starting
 
+<<<<<<< HEAD
   def enterPlayingState(): Unit = ??? //sudda, för varje entitet: nollställ & rita
 
   def enterGameOverState(): Unit = ??? // meddela "game over"
+=======
+  def enterPlayingState(): Unit = //sudda, för varje entitet: nollställ & rita
+    clear()
+    clearMessageArea()
+
+    for e <- entities do //För varje entitet i spelet
+      e.reset()
+      e.draw()
+
+    _iterationsSinceStart = 0 //Nollställ räknaren
+    state = Playing
+
+  def enterGameOverState(): Unit = // meddela "game over"
+    clearMessageArea()
+    drawInMessageArea("GAME OVER - Tryck SPACE för att starta igen", 10, 2)
+    state = GameOver
+>>>>>>> 68fe814757d12352fdce3fdf27f2893e666b24dd
 
   def enterQuittingState(): Unit = 
     println("Goodbye!")
     pixelWindow.hide()
     state = Quitting
 
-  def randomFreePos(): Pos = 
-    ??? // dra slump-pos tills ledig plats, används av frukt, monster
+  def randomFreePos(): Pos = // dra slump-pos tills ledig plats, används av frukt, monster
+    var p: Pos = null
+
+    var free = false
+
+    while !free do //sålänge platsen INTE är ledig slumpa ny
+      val x = util.Random.nextInt(dim.width) //next.Int ger ett heltal från 1 till n-1 (n-1 = dim.width -1)
+      val y = util.Random.nextInt(dim.height)
+      p = Pos(x, y) //Slumpar fram random x och y kordinater inom förstrets dimensioners gränser
+      
+      free = entities.forall(e => !e.isOccupyingBlockAt (p))
+
+    p
 
   override def onKeyDown(key: String): Unit = 
     println(s"""key "$key" pressed""")
@@ -62,7 +95,7 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     enterQuittingState()
 
   /** Implement this with logic for when to end the game */ 
-  def isGameOver: Boolean
+  def isGameOver: Boolean //Hugo
 
   /** Override this if you want to add game-logic in gameLoopAction
    *  Call super.onIteration() if you want to keep the step counter.
@@ -89,5 +122,5 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     gameLoop(stopWhen = state == Quitting)
 
   /** Implement this with a call to start with specific players and entities. */
-  def play(playerNames: String*): Unit
+  def play(playerNames: String*): Unit //Gabi
 
