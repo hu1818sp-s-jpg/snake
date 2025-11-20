@@ -1,45 +1,48 @@
 package snake
 import java.awt.Color
+import org.w3c.dom.events.MutationEvent
+
+// denna filen beskriver alla default settings som används om man inte vill skapa sina egna i MutableSettings
+//vill abstrahera mer så det blir lättare att läsa
 
 class Settings(configs: Map[String, String]):
   def getOrElse[T](key: String, default: T)(using p: Settings.Parser[T]): T = 
     configs.get(key).flatMap(p.fromString).getOrElse(default)
 
-  var windowTitle: String          = getOrElse("windowTitel", "Snake")
-  var windowSize: (Int, Int)       = getOrElse("windowSize", (50,30))
-  var blockSize: Int               = getOrElse("blockSize", 15)
-  var background: Color            = getOrElse("background", Colors.Black) 
-  var framesPerSecond: Int         = getOrElse("framesPerSecond", 50)
-  var messageAreaHeight: Int       = getOrElse("messageAreaHeight", 3)
-  var messageAreaBackground: Color = getOrElse("messageAreaBackground", Colors.DarkGray)
+  private def optionalOr(opt: Option[T], default: T): T = opt.getOrElse(default)
+
+  var windowTitle: String          = optionalOr(MutableSettings.windowTitel, "Snake")
+  var windowSize: (Int, Int)       = optionalOr(MutableSettings.windowSize, (50,30))
+  var blockSize: Int               = optionalOr(MutableSettings.blockSize, 15)
+  var background: Color            = optionalOr(MutableSettings.background, Colors.Black) 
+  var framesPerSecond: Int         = optionalOr(MutableSettings.framesPerSecond, 50)
+  var messageAreaHeight: Int       = optionalOr(MutableSettings.messageAreaHeight, 3)
+  var messageAreaBackground: Color = optionalOr(MutableSettings.messageAreaBackground, Colors.DarkGray)
   
   object onePlayer:
-    val applesNeededToWin: Int  = getOrElse("onePlayer.applesNeededToWin", 5) 
+    val applesNeededToWin: Int  = optionalOr(MutableSettings.applesNeededToWin, 5) 
   
   object apple:
-    val color: Color            = getOrElse("apple.color", Colors.Red)
-    val teleportAfterSteps: Int = getOrElse("apple.teleportAfterSteps", 500)
+    val color: Color            = optionalOr(MutableSettings.color, Colors.Red)
+    val teleportAfterSteps: Int = optionalOr(MutableSettings.teleportAfterSteps, 500)
   
   object banana:
-    val color: Color = getOrElse("banana.color", Colors.Yellow)
+    val color: Color = MutableSettings.color.getOrElse("banana.color", Colors.Yellow)
     val teleportAfterStepRange: (Int, Int) = 
-      getOrElse("banana.teleportAfterStepRange", (500, 1000))
+      MutableSettings.teleportAfterStepRange.getOrElse("banana.teleportAfterStepRange", (500, 1000))
   
   object snake:
-    val initLength: Int        = getOrElse("snake.initLength", 18)
-    val growEvery: Int         = getOrElse("snake.growEvery", 10)
-    val startGrowingAfter: Int = getOrElse("snake.startGrowingAfter", 400)
+    val initLength: Int        = optionalOr(MutableSettings.initLength, 18) // exempel på hur jag tänker implementera MutableSettings.scala, ska jag abstrahera mer?
+    val growEvery: Int         = optionalOr(MutableSettings. growEvery, 10)
+    val startGrowingAfter: Int = optionalOr(MutableSettings.startGrowingAfter, 400)
 
   object monster: 
-    val color: Color = getOrElse("monster.color", Colors.Pink)
+    val color: Color = optionalOr(MutableSettings.color, Colors.Pink)
 
 object Settings:
-  def configsFromFile(): Map[String, String] = 
-    if configs then 
-      scala.io.Source.fromFile(/*filename*/) 
+  def configsFromFile(): Map[String, String] = // TODO: read from file
     
-    // TODO: read from file
-  given default: Settings = Settings(configsFromFile())
+    given default: Settings = Settings(configsFromFile())
 
   trait Parser[T]:
     def fromString(value: String): Option[T]
