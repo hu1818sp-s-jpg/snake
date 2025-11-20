@@ -22,9 +22,9 @@ class Snake (
   private var _nbrOfApples = 0
   def nbrOfApples: Int = _nbrOfApples
 
-  def reset(): Unit = ???  // återställ starttillstånd, ge rätt svanslängd
+  def reset(): Unit = ??? //Hugo // återställ starttillstånd, ge rätt svanslängd
 
-  def grow(): Unit = // väx i rätt riktning med extra svansposition
+  def grow(): Unit =  //Hugo // väx i rätt riktning med extra svansposition
     val tail = body.last //last innebär sista elementet (pos) på ormen dvs svansen
     body.append(tail) //append: lägg till ett element i slutet av ormen
 
@@ -69,6 +69,6 @@ class Snake (
   override def toString = // bra vid println-debugging
     body.map(p => (p.x, p.y)).mkString(">:)", "~", s" going $dir")
 
-  def draw(): Unit = ???
+  def draw(): Unit = ??? //Hugo
 
-  def erase(): Unit = ???
+  def erase(): Unit = ??? //Hugo
