@@ -1,6 +1,8 @@
 package snake
 
 import java.awt.Color
+import introprog.PixelWindow
+
 
 class Snake (
   val initPos: Pos,
@@ -27,34 +29,25 @@ class Snake (
     _nbrOfSteps = 0
     _nbrOfApples = 0
     _isEatenByMonster = false
-  
+    body.clear()
+    val head =initPos + initDir
+    body += head
+    var p = head 
+    for _ <- 1 until initLength do 
+      p = p - initDir
+      body +=p
 
-    val startHead = initPos +dir
-    val startBody = 
 
-  def grow(): Unit = 
-    if body.isEmpty then  // väx i rätt riktning med extra svansposition
-      body += initPos
-    else if body.length == 1 then 
-      body += body.last
-    else 
-      val tail = body.last
-      val preTail = body(body.length - 2)
-      val dim = tail.dim
-      
-      val stepX = (tail.x -preTail.x + dim.x) % dim.x match
-        case 1 => 1
-        case n if n == dim.x-1 = -1
-        case_ => 0
-      
-      val stepY = (tail.y - preTail.y + dim.y) % dim.y match
-        case 1 => 1
-        case n if n == dim.y-1 => -1
-        case_ => 0
-
-      val newTail = Pos(tail.x + stepX, tail.y +stepY, dim)
-      body += newTail
-      
+  def grow(): Unit =  
+    body.length match
+      case 0 =>
+        body += initPos
+      case 1 =>
+        body += body.last
+      case _ =>
+        val tail = body.last
+        val pretail = body(body.length - 2)
+        body += tail + (tail - pretail)  
       
 
   def shrink(): Unit =  // krymp svansen om kroppslängden är större än 2
@@ -100,8 +93,10 @@ class Snake (
     body.map(p => (p.x, p.y)).mkString(">:)", "~", s" going $dir")
 
   def draw(): Unit = 
-    ctx.pixelWindow.drawBlock(body.head.x, body.head.y, headColor)
-    body.tail.foreach(p => ctx.pixelWindow.drawBlock(p.x, p.y, tailColor)
+    if _isEatenByMonster then return
+    //draw blcok på nåt sätt
 
   def erase(): Unit = 
-    body.foreach(p => ctx.pixelWindow.clearBlock(p.x, p.y))
+    
+      
+    
