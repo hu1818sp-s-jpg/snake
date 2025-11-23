@@ -9,7 +9,7 @@ class Snake (
   val initDir: Dir,
   val headColor: Color,
   val tailColor: Color,
- )(using ctx: SnakeGame, settings: Settings) extends CanMove: 
+)(using ctx: SnakeGame, settings: Settings) extends CanMove: 
   var dir: Dir = initDir
   val initBody: List[Pos] = List(initPos + initDir, initPos)
   val body: scala.collection.mutable.Buffer[Pos] = initBody.toBuffer

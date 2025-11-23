@@ -31,11 +31,6 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     drawTextInMessageArea("Tryck SPACE för att starta spelet", 10, 2) //Osäker över hur stor texten ska vara, återkom hit!!
     state = Starting
 
-<<<<<<< HEAD
-  def enterPlayingState(): Unit = ??? //sudda, för varje entitet: nollställ & rita
-
-  def enterGameOverState(): Unit = ??? // meddela "game over"
-=======
   def enterPlayingState(): Unit = //sudda, för varje entitet: nollställ & rita
     clear()
     clearMessageArea()
@@ -51,7 +46,6 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     clearMessageArea()
     drawInMessageArea("GAME OVER - Tryck SPACE för att starta igen", 10, 2)
     state = GameOver
->>>>>>> 68fe814757d12352fdce3fdf27f2893e666b24dd
 
   def enterQuittingState(): Unit = 
     println("Goodbye!")
