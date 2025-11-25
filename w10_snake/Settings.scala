@@ -16,10 +16,10 @@ class Settings(configs: Map[String, String]):
   var windowTitle: String          = optionalOr(MutableSettings.windowTitel, "Snake")
   var windowSize: (Int, Int)       = optionalOr(MutableSettings.windowSize, (50,30))
   var blockSize: Int               = optionalOr(MutableSettings.blockSize, 15)
-  var background: Color            = optionalOr(MutableSettings.background, colors.black) 
+  var background: Color            = optionalOr(MutableSettings.background, Colors.Black) 
   var framesPerSecond: Int         = optionalOr(MutableSettings.framesPerSecond, 50)
   var messageAreaHeight: Int       = optionalOr(MutableSettings.messageAreaHeight, 3)
-  var messageAreaBackground: Color = optionalOr(MutableSettings.messageAreaBackground, colors.darkGray)
+  var messageAreaBackground: Color = optionalOr(MutableSettings.messageAreaBackground, Colors.DarkGray)
 
   object onePlayer:
     val applesNeededToWin: Int  = optionalOr(MutableSettings.applesNeededToWin, 5) 
@@ -39,7 +39,7 @@ class Settings(configs: Map[String, String]):
     val startGrowingAfter: Int = optionalOr(MutableSettings.startGrowingAfter, 400)
 
   object monster: 
-    val color: Color = optionalOr(MutableSettings.color, color.pink)
+    val color: Color = optionalOr(MutableSettings.color, Colors.Pink)
 
 object Settings:
   def configsFromFile(): Map[String, String] = // TODO: read from file
