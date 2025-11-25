@@ -10,10 +10,10 @@ class Settings(configs: Map[String, String]):
   def getOrElse[T](key: String, default: T)(using p: Settings.Parser[T]): T = 
     configs.get(key).flatMap(p.fromString).getOrElse(default)
 
-  private def optionalOr(opt: Option[T], default: T): T = opt.getOrElse(default)
+  private def optionalOr[T](opt: Option[T], default: T): T = opt.getOrElse(default)
   // skickar in opt vilket är i Mutable Settings, annars använd default settings, skickar ut resultat
 
-  var windowTitle: String          = optionalOr(MutableSettings.windowTitel, "Snake")
+  var windowTitle: String          = optionalOr(MutableSettings.windowTitle, "Snake")
   var windowSize: (Int, Int)       = optionalOr(MutableSettings.windowSize, (50,30))
   var blockSize: Int               = optionalOr(MutableSettings.blockSize, 15)
   var background: Color            = optionalOr(MutableSettings.background, Colors.Black) 
@@ -25,7 +25,7 @@ class Settings(configs: Map[String, String]):
     val applesNeededToWin: Int  = optionalOr(MutableSettings.applesNeededToWin, 5) 
   
   object apple:
-    val color: Color            = optionalOr(MutableSettings.color, colors.red)
+    val color: Color            = optionalOr(MutableSettings.color, Colors.Red)
     val teleportAfterSteps: Int = optionalOr(MutableSettings.teleportAfterSteps, 500)
   
   /*object banana:
@@ -35,7 +35,7 @@ class Settings(configs: Map[String, String]):
   
   object snake:
     val initLength: Int        = optionalOr(MutableSettings.initLength, 18) 
-    val growEvery: Int         = optionalOr(MutableSettings. growEvery, 10)
+    val growEvery: Int         = optionalOr(MutableSettings.growEvery, 10)
     val startGrowingAfter: Int = optionalOr(MutableSettings.startGrowingAfter, 400)
 
   object monster: 
