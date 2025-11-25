@@ -5,13 +5,6 @@ import org.w3c.dom.events.MutationEvent
 // denna filen beskriver alla default settings som används om man inte vill skapa sina egna i MutableSettings
 //vill abstrahera mer så det blir lättare att läsa
 
-object colors:
-  val black = new Color(0, 0, 0)
-  val red = new Color(200, 0, 0)
-  val blue = new Color(0, 0, 200)
-  val green = new Color(0, 200, 0)
-  val darkGray = new Color(64, 64, 64)
-  val pink = new Color(255,182,193)
 
 class Settings(configs: Map[String, String]):
   def getOrElse[T](key: String, default: T)(using p: Settings.Parser[T]): T = 

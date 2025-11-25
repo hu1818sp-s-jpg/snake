@@ -96,7 +96,7 @@ class Snake (
     if _isEatenByMonster then return
     //draw blcok på nåt sätt
 
-  def erase(): Unit = 
+  def erase(): Unit = ???
     
       
     

@@ -11,18 +11,17 @@ class Player(
     def update = 
       key match
 
-        case keyMap.left => if current.dir != keyMap.right then snake.dir(West) //kolla i PlayerKeyMap dir (nyckel värde tabell) och uppdatera värdet i snake.dir
+        case keyMap.left => if snake.dir != East then snake.dir = West //kolla i PlayerKeyMap dir (nyckel värde tabell) och uppdatera värdet i snake.dir
 
-        case keyMap.right =>  if current.dir != keyMap.lift then snake.dir(East)
+        case keyMap.right =>  if snake.dir != West then snake.dir = East
 
-        case keyMap.up => if current.dir != keyMap.down then snake.dir(North)
+        case keyMap.up => if snake.dir != South then snake.dir = North
         
-        case keyMap.down => if current.dir != keyMap.up then snake.dir(South)
+        case keyMap.down => if snake.dir != North then snake.dir = South
 
-        case _ => None
-
-
-    if key => key.KeyMap then update.snake.dir() 
+        case _ => ()
+    
+    update
 
 
 object Player:
