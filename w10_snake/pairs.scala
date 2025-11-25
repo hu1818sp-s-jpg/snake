@@ -30,8 +30,18 @@ object Pos:
   def random(dim: Dim): Pos =
     Pos(Random.nextInt(dim.x), Random.nextInt(dim.y), dim)
 
-abstract sealed class Dir(val x: Int, val y: Int) extends Pair[Int]
-case object North extends Dir( 0, -1)
-case object South extends Dir( 0,  1)
-case object East  extends Dir( 1,  0)
-case object West  extends Dir(-1,  0)
+abstract sealed class Dir(val x: Int, val y: Int) extends Pair[Int]:
+  def reversed(): Dir
+case object North extends Dir( 0, -1):
+  def reversed(): Dir = 
+    South
+case object South extends Dir( 0,  1):
+  def reversed(): Dir = 
+    North
+case object East  extends Dir( 1,  0):
+  def reversed(): Dir = 
+    West
+case object West  extends Dir(-1,  0):
+  def reversed(): Dir = 
+    East
+

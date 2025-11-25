@@ -8,26 +8,38 @@ class Player(
 ):
 
   def eatsApple(): Unit =
-    if Apple.erase() then snake._nbrOfApples += 1 && points += 10
+    if Apple. then points += 10
+    window.write()
 
       
 
   def handleKey(key: String): Unit = 
     // om key ingår i keyMap så uppdatera snake.dir
-    def update = 
-      if keyMap.dir.get(key) then { key match
+    keyMap.dir.get(key) match
+      case Some(direction) if direction.reversed() != snake.dir => 
+        snake.dir = direction
+      case _ =>
 
-        case Some(newDir) => if snake.dir != key && snake.dir.opposite != key then
-          snake.dir = snake.copy(dir = newDir)
-          
-           //kolla i Player.KeyMap dir (nyckel värde tabell) och uppdatera värdet i snake.dir om current direction != opposite
+    val hejsan = "a"
+    hejsan match  
+      case "b" => println("B")
+      case "c" => println("C")
+      case "d" => println("D")
+      case "e" => println("E")
+      case "f" => println("F")
+      case rest => 
+        println(rest)
 
-
-
-        case _ => ()
-      }
     
-    update
+    
+    
+    
+    
+    if keyMap.dir.contains(key) then
+      val dir: Dir = keyMap.dir.get(key).get
+      if dir.reversed() =! snake.dir then
+        snake.dir = dir
+        
 
 
 object Player:
