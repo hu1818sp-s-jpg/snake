@@ -4,45 +4,22 @@ class Player(
   var name: String, 
   var keyMap: Player.KeyMap, 
   val snake: Snake,
-  var points: Int = 0,    // TODO: count points when eating apple & counting the number of steps, använd _nbrOfSteps & _nbrOfApples & print on screen points
-):
+  var points: Int = 0)    // TODO: count points when eating apple
 
-  def eatsApple(): Unit =
-    if Apple. then points += 10
-    window.write()
+  def eatenApple(): Int =
+    if Snake.eatApple() then points += 1
+    window.write() //tänker vi ska skriva ut poäng i pixelWindow någonstans i TwoPlayerGame?
 
       
-
   def handleKey(key: String): Unit = 
     // om key ingår i keyMap så uppdatera snake.dir
-    keyMap.dir.get(key) match
-      case Some(direction) if direction.reversed() != snake.dir => 
+    keyMap.dir.get(key) match                                         // get kollar att key ingår i vår keyMap och returnerar Some om det finns, None om inte
+      case Some(direction) if direction.reversed() != snake.dir =>    // match case nedan om värdet finns eller inte
         snake.dir = direction
       case _ =>
 
-    val hejsan = "a"
-    hejsan match  
-      case "b" => println("B")
-      case "c" => println("C")
-      case "d" => println("D")
-      case "e" => println("E")
-      case "f" => println("F")
-      case rest => 
-        println(rest)
 
-    
-    
-    
-    
-    
-    if keyMap.dir.contains(key) then
-      val dir: Dir = keyMap.dir.get(key).get
-      if dir.reversed() =! snake.dir then
-        snake.dir = dir
-        
-
-
-object Player:
+object Player
   enum KeyMap(left: String, right: String, up: String, down: String):
     val dir = Map(left -> West, right -> East, up -> North, down -> South) 
     case Letters extends KeyMap("a", "d", "w", "s")
