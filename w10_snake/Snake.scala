@@ -94,9 +94,14 @@ class Snake (
 
   def draw(): Unit = 
     if _isEatenByMonster then return
-    //draw blcok på nåt sätt
+    if body.nonEmpty then
+      ctx.drawBlock(body.head, headColor)
+      body.tail.foreach(p => ctx.drawBlock, tailColor)
 
-  def erase(): Unit = ???
+  def erase(): Unit = 
+    if body.nonEmpty then 
+      ctx.eraseBlock(body.head)
+      body.tail.foreach(ctx.eraseBlock)
     
       
     
