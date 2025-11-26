@@ -1,6 +1,6 @@
 package snake
 //Gabi
-import java.awt.color
+import java.awt.Color
 
 class Apple(using ctx: SnakeGame, settings: Settings) //game och set är som variabler som refererar till objekten. Med using så hittar scala själv vilka obejkt som används. 
 
@@ -8,7 +8,7 @@ class Apple(using ctx: SnakeGame, settings: Settings) //game och set är som var
     settings.apple.teleportAfterSteps
 
   def teleport(): Pos =
-    game.randomFreePos()
+    ctx.randomFreePos()
 
   def draw(): Unit =
     game.drawBlock(pos, settings.apple.color)

@@ -42,9 +42,9 @@ class Settings(configs: Map[String, String]):
     val color: Color = optionalOr(MutableSettings.color, Colors.Pink)
 
 object Settings:
-  def configsFromFile(): Map[String, String] = // TODO: read from file
+  def configsFromFile(): Map[String, String] = Map.empty// TODO: read from file
     
-    given default: Settings = Settings(configsFromFile())
+  given default: Settings = Settings(configsFromFile())
 
   trait Parser[T]:
     def fromString(value: String): Option[T]
