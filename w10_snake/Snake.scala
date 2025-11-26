@@ -92,16 +92,16 @@ class Snake (
   override def toString = // bra vid println-debugging
     body.map(p => (p.x, p.y)).mkString(">:)", "~", s" going $dir")
 
-  def draw(): Unit = 
-    if _isEatenByMonster then return
-    if body.nonEmpty then
-      ctx.drawBlock(body.head, headColor)
-      body.tail.foreach(p => ctx.drawBlock, tailColor)
+  def draw(): Unit =
+    if !_isEatenByMonster && body.nonEmpty then
+      ctx.drawBlock(body.head.x, body.head.y, headColor)
+      body.tail.foreach(p => ctx.drawBlock(p.x, p.y, tailColor))
 
-  def erase(): Unit = 
-    if body.nonEmpty then 
-      ctx.eraseBlock(body.head)
-      body.tail.foreach(ctx.eraseBlock)
+  def erase(): Unit =
+    if body.nonEmpty then
+      ctx.eraseBlock(body.head.x, body.head.y)
+      body.tail.foreach(p => ctx.eraseBlock(p.x, p.y))
+
     
       
     

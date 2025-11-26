@@ -1,6 +1,6 @@
 package snake
 import java.awt.Color
-import org.w3c.dom.events.MutationEvent
+//import org.w3c.dom.events.MutationEvent
 
 // denna filen beskriver alla default settings som används om man inte vill skapa sina egna i MutableSettings
 //vill abstrahera mer så det blir lättare att läsa
@@ -42,9 +42,9 @@ class Settings(configs: Map[String, String]):
     val color: Color = optionalOr(MutableSettings.color, Colors.Pink)
 
 object Settings:
-  def configsFromFile(): Map[String, String] = Map.empty// TODO: read from file
-    
+  def configsFromFile(): Map[String, String] = Map.empty // TODO: read from file
   given default: Settings = Settings(configsFromFile())
+
 
   trait Parser[T]:
     def fromString(value: String): Option[T]
