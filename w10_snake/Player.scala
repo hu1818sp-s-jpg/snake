@@ -6,7 +6,7 @@ class Player(
   val snake: Snake,
   var points: Int = 0)    // TODO: count points when eating apple
 
-  def eatenApple(): Int =
+  def ökaPoäng(): Int =
     if Snake.eatApple() then points += 1
     window.write() //tänker vi ska skriva ut poäng i pixelWindow någonstans i TwoPlayerGame?
 

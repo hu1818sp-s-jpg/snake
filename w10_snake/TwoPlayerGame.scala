@@ -18,7 +18,10 @@ class TwoPlayerGame(using settings: Settings) extends SnakeGame(settings):
     Colors.Blue,
     Colors.DarkBlue
   )
-
-  private val player1 = Player("Player 1",Player.keymap.Letters, snake1)
-  private val player2 = Player("Player 2", Player.keymap.Arrows, snake2)
-  def play(playerNames: String*): Unit = ???  // ska överskugga play i SnakeGame
+  private given SnakeGame = this
+  private val player1 = Player("player1",Player.keymap.Letters, snake1)
+  private val player2 = Player("player2", Player.keymap.Arrows, snake2)
+  def play(playerNames: String*): Unit = 
+    start(player1, player2)(snake1, snake2)
+    
+      // ska överskugga play i SnakeGame

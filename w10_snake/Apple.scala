@@ -1,20 +1,18 @@
 package snake
 //Gabi
-import java.awt.color
+import java.awt.Color
 
-class Apple(using ctx: SnakeGame, settings: Settings) //game och set är som variabler som refererar till objekten. Med using så hittar scala själv vilka obejkt som används. 
+class Apple(using ctx: SnakeGame, settings: Settings) extends CanTeleport: //game och set är som variabler som refererar till objekten. Med using så hittar scala själv vilka obejkt som används. 
 
   def teleportAfterSteps: Int =
     settings.apple.teleportAfterSteps
 
   def teleport(): Pos =
-    game.randomFreePos()
+    ctx.randomFreePos()
 
-  def draw(): Unit =
-    game.drawBlock(pos, settings.apple.color)
+  def draw(): Unit = ctx.drawBlock(pos.x, pos.y, settings.apple.color)
+  def erase(): Unit = ctx.eraseBlock(pos.x, pos.y)
 
-  def erase(): Unit =
-    game.eraseBlock(pos)
 
   def isOccupyingBlockAt(p: Pos): Boolean =
     p == pos

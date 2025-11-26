@@ -14,6 +14,9 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
   messageAreaHeight     = settings.messageAreaHeight,
   messageAreaBackground = settings.messageAreaBackground
 ):
+  def clear(): Unit = pixelWindow.clear()
+  def drawInMessageArea(text: String, x: Int, y: Int): Unit =
+    drawTextInMessageArea(text, x, y )
   // exempel på olika synlighet (diskutera val av synlighet utifrån användning)
   var entities: Vector[Entity] = Vector.empty
   protected var players: Vector[Player] = Vector.empty
@@ -58,9 +61,10 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     var free = false
 
     while !free do //sålänge platsen INTE är ledig slumpa ny
-      val x = util.Random.nextInt(dim.width) //next.Int ger ett heltal från 1 till n-1 (n-1 = dim.width -1)
-      val y = util.Random.nextInt(dim.height)
-      p = Pos(x, y) //Slumpar fram random x och y kordinater inom förstrets dimensioners gränser
+      val x = util.Random.nextInt(dim._1) //next.Int ger ett heltal från 1 till n-1 (n-1 = dim.width -1)
+      val y = util.Random.nextInt(dim._2)
+      val windowDim = Dim(settings.windowSize)
+      p = Pos(x, y, windowDim) //Slumpar fram random x och y kordinater inom förstrets dimensioners gränser
       
       free = entities.forall(e => !e.isOccupyingBlockAt (p))
 
@@ -89,7 +93,18 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     enterQuittingState()
 
   /** Implement this with logic for when to end the game */ 
-  def isGameOver: Boolean //Hugo
+  def isGameOver: Boolean =
+    val snakes = players.map(_.snake)
+
+    val selfBite = 
+      snakes.exists(s => s.body.nonEmpty && s.body.tail.contains(s.body.head))
+    
+    val collision = snakes.combinations(2).exists {
+      case Seq(a, b) =>
+        a.body.contains(b.body.head) || b.body.contains(a.body.head)
+    }
+
+    selfBite || collision
 
   /** Override this if you want to add game-logic in gameLoopAction
    *  Call super.onIteration() if you want to keep the step counter.
