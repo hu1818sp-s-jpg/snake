@@ -15,7 +15,7 @@ def run: Unit =
   val selected = 
     introprog.Dialog.select("Number of players?", buttons, "Snake")
   selected match 
-    case "One"         => createOnePlayerGame()
+    /* case "One"         => createOnePlayerGame() */
     case "Two"         => createTwoPlayerGame()
     case "Competition" => println(s"TODO: $selected") 
     case "Tournament"  => println(s"TODO: $selected") 
