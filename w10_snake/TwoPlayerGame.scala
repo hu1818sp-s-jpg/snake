@@ -1,7 +1,7 @@
 package snake
 
 class TwoPlayerGame(using settings: Settings) extends SnakeGame(settings):  
-//ska ärva SnakeGame
+  private given SnakeGame = this
   private val windowDim = Dim(settings.windowSize)
 
 
@@ -18,9 +18,10 @@ class TwoPlayerGame(using settings: Settings) extends SnakeGame(settings):
     Colors.Blue,
     Colors.DarkBlue
   )
-  private given SnakeGame = this
-  private val player1 = Player("player1",Player.keymap.Letters, snake1)
-  private val player2 = Player("player2", Player.keymap.Arrows, snake2)
+
+  private val player1 = Player("player1", Player.KeyMap.Letters, snake1)
+  private val player2 = Player("player2", Player.KeyMap.Arrows,  snake2)
+
   def play(playerNames: String*): Unit = 
     start(player1, player2)(snake1, snake2)
     
