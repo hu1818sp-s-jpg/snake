@@ -8,13 +8,13 @@ class Apple(using ctx: SnakeGame, settings: Settings) //game och set är som var
     settings.apple.teleportAfterSteps
 
   def teleport(): Pos =
-    game.randomFreePos()
+    ctx.randomFreePos()
 
   def draw(): Unit =
-    game.drawBlock(pos, settings.apple.color)
+    ctx.drawBlock(pos, settings.apple.color)
 
   def erase(): Unit =
-    game.eraseBlock(pos)
+    ctx.eraseBlock(pos)
 
   def isOccupyingBlockAt(p: Pos): Boolean =
     p == pos
