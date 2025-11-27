@@ -18,6 +18,14 @@ class Snake (
   val growEvery: Int = settings.snake.growEvery
   val startGrowingAfter: Int = settings.snake.startGrowingAfter
 
+  def eatApple(): Boolean =
+    !ctx.entities.find(e => { // entities är en tom Vector med metoderna som finns i Entity.scala, vi söker bara efter äpplen
+      e match 
+        case apple: Apple => apple isOccupyingBlockAt body.head // vi matchar bara med typen äpple, om det är på samma plats som ormens huvud
+        case _ => 
+    }).isEmpty // om det inte är ett äpple (returnerar None) då ger funktionen false
+
+
   private var _nbrOfSteps = 0
   def nbrOfSteps: Int = _nbrOfSteps
 
