@@ -39,7 +39,15 @@ class Settings(configs: Map[String, String]):
     val color: Color = getOrElse("color", Colors.Pink)
 
 object Settings:
-  def configsFromFile(): Map[String, String] = Map.empty // TODO: read from file
+  def configsFromFile(): Map[String, String] = 
+    val register = collection.mutable.Map.empty[String, String] // skapar en mutable map som heter register
+    val lines = scala.io.Source.fromFile("settings").getLines() // tar alla rader från settings filen
+    for line <- lines do                                        // splittar alla lines vid = och skapar nyckel värden par och stoppar in i mappen register
+      val splitLines = line.split("=")
+      register.addOne(splitLines(0)->splitLines(1))
+    register.toMap                                               // gör mappen oföränderlig
+
+
   given default: Settings = Settings(configsFromFile())
 
 
@@ -54,7 +62,28 @@ object Settings:
       def fromString(value: String): Option[String] = Some(value)   
 
     given intPairParser: Parser[(Int, Int)] with
-      def fromString(value: String): Option[(Int, Int)] = None // TODO
+      def fromString(value: String): Option[(Int, Int)] = 
+        value.split(",") match
+          case Array(a, b) =>
+            for 
+              x <- a.toIntOption
+              y <- b.toIntOption
+            yield (x, y)
+          case _ => None
 
     given colorParser: Parser[Color] with 
-      def fromString(value: String): Option[Color] = None // TODO
+      def fromString(value: String): Option[Color] = 
+        value match
+          case Red => Some(Colors.Red)
+          case Green => Some(Colors.Green)
+          case Yellow => Some(Colors.Yellow)
+          case DarkGreen => Some(Colors.DarkGreen)
+          case Blue => Some(Colors.DarkBlue)
+          case DarkBlue => Some(Colors.DarkBlue)
+          case Purple => Some(Colors.Purple)
+          case DarkPurple => Some(Colors.DarkPurple)
+          case Pink => Some(Colors.Pink)
+          case DarkPink => Some(Colors.DarkPink)
+          case Black => Some(Colors.Black)
+          case DarkGray => Some(Colors.DarkGray)
+          case _ => None

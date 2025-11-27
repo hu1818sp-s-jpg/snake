@@ -4,7 +4,7 @@ class Player(
   var name: String, 
   var keyMap: Player.KeyMap, 
   val snake: Snake,
-  var points: Int = 0)    // TODO: count points when eating apple
+  var points: Int = 0):    // TODO: count points when eating apple
 
   def ökaPoäng(): Int =
     if Snake.eatApple() then points += 1
