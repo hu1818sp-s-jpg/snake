@@ -22,9 +22,9 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
   // exempel på olika synlighet (diskutera val av synlighet utifrån användning)
   var entities: Vector[Entity] = Vector.empty
 
-  var apple1 = new Apple(this, settings)
-  var apple2 = new Apple(this, settings)
-  var monster = new Monster
+  var apple1 = new Apple(using this, settings)
+  var apple2 = new Apple(using this, settings)
+  var monster = new Monster(using this, settings)
 
   entities = Vector(apple1, apple2, monster)
 
@@ -112,8 +112,8 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
       case Seq(a, b) =>
         a.body.contains(b.body.head) || b.body.contains(a.body.head)
     }
-
-    selfBite || collision
+    
+    selfBite || collision 
 
   /** Override this if you want to add game-logic in gameLoopAction
    *  Call super.onIteration() if you want to keep the step counter.
