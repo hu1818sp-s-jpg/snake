@@ -21,8 +21,12 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     drawTextInMessageArea(text, x, y )
   // exempel på olika synlighet (diskutera val av synlighet utifrån användning)
   var entities: Vector[Entity] = Vector.empty
-  var apple = new Apple
-  var monsters = new Monster
+
+  var apple1 = new Apple(this, settings)
+  var apple2 = new Apple(this, settings)
+  var monster = new Monster
+
+  entities = Vector(apple1, apple2, monster)
 
   protected var players: Vector[Player] = Vector.empty
   private var isPaused = false
@@ -137,12 +141,15 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
 
   /** Implement this with a call to start with specific players and entities. */
   def play(playerNames: String*): Unit //Gabi
-    var apple1 = new Apple
-    var apple2 = new Apple
+    //var apple1 = new Apple
+    //var apple2 = new Apple
     
-    var snake1 = new Snake
-    var snake2 = new Snake
+    //var snake1 = new Snake(randomFreePos, initDir, DarkGreen, Green)(using ctx: SnakeGame, settings: Settings)
+    //var snake2 = new Snake(randomFreePos, initDir, DarkGreen, Green)(using ctx: SnakeGame, settings: Settings)
 
-    if playerNames != 2 then
-      pixelWindow.hide
+    //player1
+    //player2
+
+    //if playerNames != 2 then
+      //pixelWindow.hide
 
