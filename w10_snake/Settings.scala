@@ -37,6 +37,8 @@ class Settings(configs: Map[String, String]):
 
   object monster: 
     val color: Color = getOrElse("color", Colors.Pink)
+    val teleportAfterSteps: Int = getOrElse("teleportAfterSteps", 500)
+
 
 object Settings:
   def configsFromFile(): Map[String, String] = Map.empty // TODO: read from file
