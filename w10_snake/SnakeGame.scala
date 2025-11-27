@@ -1,5 +1,7 @@
 package snake
 
+import java.applet.Applet
+
 object SnakeGame:
   enum State:
     case Starting, Playing, GameOver, Quitting
@@ -19,6 +21,9 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     drawTextInMessageArea(text, x, y )
   // exempel på olika synlighet (diskutera val av synlighet utifrån användning)
   var entities: Vector[Entity] = Vector.empty
+  var apple = new Apple
+  var monsters = new Monster
+
   protected var players: Vector[Player] = Vector.empty
   private var isPaused = false
 
@@ -132,4 +137,12 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
 
   /** Implement this with a call to start with specific players and entities. */
   def play(playerNames: String*): Unit //Gabi
+    var apple1 = new Apple
+    var apple2 = new Apple
+    
+    var snake1 = new Snake
+    var snake2 = new Snake
+
+    if playerNames != 2 then
+      pixelWindow.hide
 
