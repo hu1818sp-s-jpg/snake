@@ -24,7 +24,7 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
 
   var apple1 = new Apple(this, settings)
   var apple2 = new Apple(this, settings)
-  var monster = new Monster
+  //var monster = new Monster
 
   entities = Vector(apple1, apple2, monster)
 
