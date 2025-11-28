@@ -76,16 +76,16 @@ object Settings:
     given colorParser: Parser[Color] with 
       def fromString(value: String): Option[Color] = 
         value match
-          case Red => Some(Colors.Red)
-          case Green => Some(Colors.Green)
-          case Yellow => Some(Colors.Yellow)
-          case DarkGreen => Some(Colors.DarkGreen)
-          case Blue => Some(Colors.DarkBlue)
-          case DarkBlue => Some(Colors.DarkBlue)
-          case Purple => Some(Colors.Purple)
-          case DarkPurple => Some(Colors.DarkPurple)
-          case Pink => Some(Colors.Pink)
-          case DarkPink => Some(Colors.DarkPink)
-          case Black => Some(Colors.Black)
-          case DarkGray => Some(Colors.DarkGray)
+          case red => Some(Colors.Red)
+          case green => Some(Colors.Green)
+          case yellow => Some(Colors.Yellow)
+          case darkGreen => Some(Colors.DarkGreen)
+          case blue => Some(Colors.DarkBlue)
+          case darkBlue => Some(Colors.DarkBlue)
+          case purple => Some(Colors.Purple)
+          case darkPurple => Some(Colors.DarkPurple)
+          case pink => Some(Colors.Pink)
+          case darkpink => Some(Colors.DarkPink)
+          case black => Some(Colors.Black)
+          case darkgray => Some(Colors.DarkGray)
           case _ => None

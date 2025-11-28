@@ -21,8 +21,8 @@ class Snake (
   def eatApple(): Boolean =
     !ctx.entities.find(e => { // entities är en tom Vector med metoderna som finns i Entity.scala, vi söker bara efter äpplen
       e match 
-        case apple: Apple => apple isOccupyingBlockAt body.head // vi matchar bara med typen äpple, om det är på samma plats som ormens huvud
-        case _ => 
+        case apple: Apple => apple isOccupyingBlockAt(body.head) // vi matchar bara med typen äpple, om det är på samma plats som ormens huvud
+        case _ => false
     }).isEmpty // om det inte är ett äpple (returnerar None) då ger funktionen false
 
 
@@ -87,6 +87,7 @@ class Snake (
     // åtgärder om äter frukt eller blir uppäten av monster
     if _isEatenByMonster then return
     _nbrOfSteps +=1
+    
     val newHead = body.head + dir
     body.prepend(newHead)
 
