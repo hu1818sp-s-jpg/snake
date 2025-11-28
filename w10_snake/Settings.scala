@@ -11,7 +11,7 @@ class Settings(configs: Map[String, String]):
 
 
   var windowTitle: String          = getOrElse("windowTitle", "Snake")
-  var windowSize: (Int, Int)       = getOrElse("windowSize", (50,30))
+  var windowSize: (Int, Int)       = getOrElse("windowSize", (30,30))
   var blockSize: Int               = getOrElse("blockSize", 15)
   var background: Color            = getOrElse("backgroundColor", Colors.Black) 
   var framesPerSecond: Int         = getOrElse("framesPerSecond", 50)
