@@ -32,8 +32,13 @@ class Snake (
   private var _nbrOfApples = 0
   def nbrOfApples: Int = _nbrOfApples
 
+  private var _hitWall = false
+  def hitWall: Boolean = _hitWall
+
+
   def reset(): Unit =   // återställ starttillstånd, ge rätt svanslängd
     dir = initDir
+    _hitWall = false
     _nbrOfSteps = 0
     _nbrOfApples = 0
     _isEatenByMonster = false
@@ -83,11 +88,15 @@ class Snake (
     
 
   def move(): Unit =  
-    // väx och krymp enl. regler
-    // åtgärder om äter frukt eller blir uppäten av monster
-    if _isEatenByMonster then return
+    if _isEatenByMonster || _hitWall then return
     _nbrOfSteps +=1
-    
+    val head = body.head
+    val w = head.dim
+    val nextX = head.x + dir.x
+    val nextY = head.y + dir.y
+    if nextX < 0 || nextX >= w.x || nextY < 0 || nextY >= w.y then
+      _hitWall = true
+      return
     val newHead = body.head + dir
     body.prepend(newHead)
 
