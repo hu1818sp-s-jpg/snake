@@ -25,6 +25,7 @@ class TwoPlayerGame(using settings: Settings) extends SnakeGame(settings):
   def play(playerNames: String*): Unit = 
     start(player1, player2)(snake1, snake2, apple1, apple2, monster)
     
+    
     //if playerNames.length != 2 then
     //  pixelWindow.hide()
     
