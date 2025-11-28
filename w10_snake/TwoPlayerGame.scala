@@ -23,7 +23,7 @@ class TwoPlayerGame(using settings: Settings) extends SnakeGame(settings):
   val player2 = Player("player2", Player.KeyMap.Arrows,  snake2)
 
   def play(playerNames: String*): Unit = 
-    start(player1, player2)(snake1, snake2)
+    start(player1, player2)(snake1, snake2, apple1, apple2, monster)
     
     
     //if playerNames.length != 2 then
