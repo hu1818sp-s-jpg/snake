@@ -23,10 +23,6 @@ object Player {
   }
 }
 
-  /*def ökaPoäng(): Int =
-    if Snake.eatApple() then points += 1
-    window.write() //tänker vi ska skriva ut poäng i pixelWindow någonstans i TwoPlayerGame?
-    */
     
 
       
