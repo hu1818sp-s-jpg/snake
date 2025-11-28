@@ -83,7 +83,7 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
   override def onKeyDown(key: String): Unit = 
     println(s"""key "$key" pressed""")
     state match 
-      case Starting => if key == " " then enterPlayingState()
+      case Starting => if key == " "  then enterPlayingState()
 
       case Playing =>
         if key == "Esc" then

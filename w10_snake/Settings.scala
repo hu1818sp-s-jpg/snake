@@ -31,7 +31,7 @@ class Settings(configs: Map[String, String]):
       MutableSettings.teleportAfterStepRange.getOrElse("banana.teleportAfterStepRange", (500, 1000))*/
   
   object snake:
-    val initLength: Int        = getOrElse("initLength", 18) 
+    val initLength: Int        = getOrElse("initLength", 6) 
     val growEvery: Int         = getOrElse("growEvery", 10)
     val startGrowingAfter: Int = getOrElse("startGrowingAfter", 400)
 
