@@ -128,7 +128,10 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
    */
   def onIteration(): Unit = 
     clearMessageArea()
-    drawTextInMessageArea(s"Number of steps: $iterationsSinceStart", 10, 2)
+    drawTextInMessageArea(s"Number of steps: $iterationsSinceStart", 20, 2)
+    ökaPoäng()
+
+  def ökaPoäng(): Unit = ()
 
   override def gameLoopAction(): Unit = 
     if state == Playing && !isPaused then

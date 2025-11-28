@@ -25,14 +25,14 @@ class TwoPlayerGame(using settings: Settings) extends SnakeGame(settings):
   val player1 = Player("player1", Player.KeyMap.Letters, snake1, player1Points)
   val player2 = Player("player2", Player.KeyMap.Arrows,  snake2, player2Points)
 
-  def ökaPoäng(): Unit =
+  override def ökaPoäng(): Unit = // JULIA SKA FIXA DETTA PROBLEMET! när huvudet och äpplet är på samma ställe så hinner metoden eatAppleAndGrow sudda den innan jag kan ränka poänget. därför öka poängen aldrig
     if snake1.eatApple() then 
       player1Points += 1
+    drawInMessageArea(s"Player1 points: $player1Points", 1, 2)
+    
     if snake2.eatApple() then 
       player2Points += 1
-
-    drawInMessageArea(s"Player1 points: $player1Points", 1, 2)
-    drawInMessageArea(s"Player 2 points: $player2Points", 20, 2)
+    drawInMessageArea(s"Player 2 points: $player2Points", 35, 2)
 
   def play(playerNames: String*): Unit = 
     start(player1, player2)(snake1, snake2, apple1, apple2, monster)
