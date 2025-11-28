@@ -14,5 +14,5 @@ class Apple(using ctx: SnakeGame, settings: Settings) extends CanTeleport: //gam
   
   def erase(): Unit = ctx.eraseBlock(pos.x, pos.y)
 
-  def isOccupyingBlockAt(p: Pos): Boolean =
+  infix def isOccupyingBlockAt(p: Pos): Boolean =
     p == pos

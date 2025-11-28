@@ -10,6 +10,8 @@
 **/.scalafmt.conf
 **/.ammonite
 **/.scala-build
+.bsp/scala.json
+.scala-build/
 
 **/*.cache-main
 **/.metadata

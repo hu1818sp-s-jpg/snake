@@ -46,6 +46,7 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
   def enterPlayingState(): Unit = //sudda, för varje entitet: nollställ & rita
     clear()
     clearMessageArea()
+    println("In enterPlayingState")
 
     for e <- entities do //För varje entitet i spelet
       e.reset()
@@ -111,6 +112,7 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     val collision = snakes.combinations(2).exists {
       case Seq(a, b) =>
         a.body.contains(b.body.head) || b.body.contains(a.body.head)
+      case _ => false
     }
     
     selfBite || collision 
@@ -142,13 +144,13 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
   /** Implement this with a call to start with specific players and entities. */
   def play(playerNames: String*): Unit //Gabi
     //var apple1 = new Apple
-    //var apple2 = new Apple
+   // var apple2 = new Apple
     
-    //var snake1 = new Snake(randomFreePos, initDir, DarkGreen, Green)(using ctx: SnakeGame, settings: Settings)
-    //var snake2 = new Snake(randomFreePos, initDir, DarkGreen, Green)(using ctx: SnakeGame, settings: Settings)
+    //var snake1 = new Snake(randomFreePos(), initDir, DarkGreen, Green)(using ctx: SnakeGame, settings: Settings)
+    //var snake2 = new Snake(randomFreePos(), initDir, DarkGreen, Green)(using ctx: SnakeGame, settings: Settings)
 
-    //player1
-    //player2
+    //var player1 = new Player("player1", Player.KeyMap.Letters, snake1)
+    //var player2 = new Player("player2", Player.KeyMap.Letters, snake1)
 
     //if playerNames != 2 then
       //pixelWindow.hide
