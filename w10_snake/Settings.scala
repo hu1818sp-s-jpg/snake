@@ -12,7 +12,7 @@ class Settings(configs: Map[String, String]):
 
   var windowTitle: String          = getOrElse("windowTitle", "Snake")
   var windowSize: (Int, Int)       = getOrElse("windowSize", (30,30))
-  var blockSize: Int               = getOrElse("blockSize", 15)
+  var blockSize: Int               = getOrElse("blockSize", 20)
   var background: Color            = getOrElse("backgroundColor", Colors.Black) 
   var framesPerSecond: Int         = getOrElse("framesPerSecond", 50)
   var messageAreaHeight: Int       = getOrElse("messageAreaHeight", 3)

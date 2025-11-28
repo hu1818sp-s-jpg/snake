@@ -1,6 +1,6 @@
 package snake
 //Gabi
-import java.awt.Color
+//import java.awt.Color
 
 class Apple(using ctx: SnakeGame, settings: Settings) extends CanTeleport: //game och set är som variabler som refererar till objekten. Med using så hittar scala själv vilka obejkt som används. 
 
