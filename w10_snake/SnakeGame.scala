@@ -130,9 +130,13 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
   override def gameLoopAction(): Unit = 
     if state == Playing && !isPaused then
       _iterationsSinceStart += 1
+
       entities.foreach(_.erase())
       entities.foreach(_.update())
+
+      eatAppleAndGrow()
       entities.foreach(_.draw())
+
       onIteration()
       if isGameOver then enterGameOverState()
 
@@ -144,6 +148,15 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     enterStartingState()
     gameLoop(stopWhen = state == Quitting)
 
+  def eatAppleAndGrow(): Unit =
+    val snakes = players.map(_.snake)
+    val apples = entities.collect { case a: Apple => a }
+
+    for snake <- snakes do
+      for apple <- apples do
+        if snake.body.nonEmpty && snake.body.head == apple.pos then
+          snake.grow()
+          apple.reset()
   /** Implement this with a call to start with specific players and entities. */
   def play(playerNames: String*): Unit //Gabi
     //var apple1 = new Apple
