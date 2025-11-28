@@ -117,8 +117,11 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
     val monster =
       entities.collectFirst { case m: Monster => m.pos }
         .exists(pos => snakes.exists(_.body.head == pos))
-      
-    selfBite || collision || monster
+
+    val wallHit = snakes.exists(_.hitWall)
+
+
+    selfBite || collision || monster || wallHit
 
   /** Override this if you want to add game-logic in gameLoopAction
    *  Call super.onIteration() if you want to keep the step counter.
