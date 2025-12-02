@@ -140,6 +140,7 @@ abstract class SnakeGame(settings: Settings) extends introprog.BlockGame(
       entities.foreach(_.erase())
       entities.foreach(_.update())
 
+      ökaPoäng()
       eatAppleAndGrow()
       entities.foreach(_.draw())
 
