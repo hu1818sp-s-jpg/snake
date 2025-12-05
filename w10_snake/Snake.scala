@@ -66,6 +66,7 @@ class Snake (
   def shrink(): Unit =  // krymp svansen om kroppslängden är större än 2
     if body.length > 2 then 
       body.remove(body.length-1)
+      ()
   def isOccupyingBlockAt(p: Pos): Boolean =  // kolla om p finns i kroppen
     body.contains(p)
 
